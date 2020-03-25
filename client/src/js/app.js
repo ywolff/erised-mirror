@@ -88,7 +88,8 @@ class App extends Component {
 
   receiveNudge() {
     this.setState({ nudging: true });
-    setTimeout(() => this.setState({ nudging: false }), 2000)
+    new Audio(require('../assets/nudge.mp3')).play();
+    setTimeout(() => this.setState({ nudging: false }), 1000)
   }
 
   render() {

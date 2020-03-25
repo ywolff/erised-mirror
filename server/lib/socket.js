@@ -32,6 +32,12 @@ function initSocket(socket) {
         receiver.emit('end');
       }
     })
+    .on('nudge', (data) => {
+      const receiver = users.get(data.to);
+      if (receiver) {
+        receiver.emit('nudge');
+      }
+    })
     .on('disconnect', () => {
       users.remove(id);
       console.log(id, 'disconnected');

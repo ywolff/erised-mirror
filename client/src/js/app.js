@@ -16,12 +16,15 @@ class App extends Component {
       callModal: '',
       callFrom: '',
       localSrc: null,
-      peerSrc: null
+      peerSrc: null,
+      friendID: null,
+      nudging: false,
     };
     this.pc = {};
     this.config = null;
     this.startCallHandler = this.startCall.bind(this);
     this.endCallHandler = this.endCall.bind(this);
+    this.sendNudgeHandler = this.sendNudge.bind(this);
     this.rejectCallHandler = this.rejectCall.bind(this);
   }
 
@@ -40,6 +43,7 @@ class App extends Component {
           if (data.sdp.type === 'offer') this.pc.createAnswer();
         } else this.pc.addIceCandidate(data.candidate);
       })
+      .on('nudge', this.receiveNudge.bind(this))
       .on('end', this.endCall.bind(this, false))
       .emit('init');
   }
@@ -52,7 +56,7 @@ class App extends Component {
         if (!isCaller) newState.callModal = '';
         this.setState(newState);
       })
-      .on('peerStream', src => this.setState({ peerSrc: src }))
+      .on('peerStream', src => this.setState({ peerSrc: src, friendID }))
       .start(isCaller, config);
   }
 
@@ -76,8 +80,19 @@ class App extends Component {
     });
   }
 
+  sendNudge() {
+    const { friendID } = this.state;
+    socket.emit('nudge', { to: friendID });
+    this.receiveNudge()
+  }
+
+  receiveNudge() {
+    this.setState({ nudging: true });
+    setTimeout(() => this.setState({ nudging: false }), 2000)
+  }
+
   render() {
-    const { clientId, callFrom, callModal, callWindow, localSrc, peerSrc } = this.state;
+    const { clientId, callFrom, callModal, callWindow, localSrc, peerSrc, nudging } = this.state;
     return (
       <div>
         <MainWindow
@@ -92,6 +107,8 @@ class App extends Component {
             config={this.config}
             mediaDevice={this.pc.mediaDevice}
             endCall={this.endCallHandler}
+            sendNudge={this.sendNudgeHandler}
+            nudging={nudging}
           />
         ) }
         <CallModal

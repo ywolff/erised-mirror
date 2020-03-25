@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 const getButtonClass = (icon, enabled) => classnames(`btn-action fa ${icon}`, { disable: !enabled });
 
-function CallWindow({ peerSrc, localSrc, config, mediaDevice, status, endCall }) {
+function CallWindow({ peerSrc, localSrc, config, mediaDevice, status, endCall, sendNudge, nudging }) {
   const peerVideo = useRef(null);
   const localVideo = useRef(null);
   const [video, setVideo] = useState(config.video);
@@ -38,7 +38,7 @@ function CallWindow({ peerSrc, localSrc, config, mediaDevice, status, endCall })
   };
 
   return (
-    <div className={classnames('call-window', status)}>
+    <div className={classnames('call-window', status, {'nudging': nudging})}>
       <video id="peerVideo" ref={peerVideo} autoPlay />
       <video id="localVideo" ref={localVideo} autoPlay muted />
       <div className="video-control">
@@ -53,6 +53,11 @@ function CallWindow({ peerSrc, localSrc, config, mediaDevice, status, endCall })
           type="button"
           className={getButtonClass('fa-microphone', audio)}
           onClick={() => toggleMediaDevice('audio')}
+        />
+        <button
+          type="button"
+          className="btn-action fa fa-exclamation"
+          onClick={() => sendNudge()}
         />
         <button
           type="button"
@@ -73,7 +78,9 @@ CallWindow.propTypes = {
     video: PropTypes.bool.isRequired
   }).isRequired,
   mediaDevice: PropTypes.object, // eslint-disable-line
-  endCall: PropTypes.func.isRequired
+  endCall: PropTypes.func.isRequired,
+  sendNudge: PropTypes.func.isRequired,
+  nudging: PropTypes.bool.isRequired
 };
 
 export default CallWindow;

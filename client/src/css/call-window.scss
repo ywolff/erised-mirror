@@ -42,12 +42,14 @@
 	video {
 		position: absolute;
 	}
-	
+
 	#localVideo {
 		bottom: 0;
 		right: 0;
 		width: 20%;
 		height: 20%;
+		-webkit-transform: scaleX(-1);
+		transform: scaleX(-1);
 	}
 	
 	#peerVideo {

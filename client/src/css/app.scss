@@ -8,7 +8,10 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "shared/base";
 
 html {
-  background: url("https://source.unsplash.com/2560x1440/?forest,mountain") center no-repeat fixed;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/5/51/Mirror_of_Erised_%2828731125354%29.jpg");
+  background-position-y: 40%;
+  background-position-x: -5vw;
+  background-size: 110vw;
 }
 
 body {

@@ -8,7 +8,7 @@ fetch('http://localhost:4040/api/tunnels')
   .then(secureTunnel => {
     open(secureTunnel.public_url);
     clipboardy.writeSync(secureTunnel.public_url);
-    console.log(`Application running at [ ${secureTunnel.public_url} ] (copied to clipboard)`);
+    console.log(`Mirror can be found at [ ${secureTunnel.public_url} ] (copied to clipboard)`);
   })
   .catch(err => {
     if (err.code === 'ECONNREFUSED') {

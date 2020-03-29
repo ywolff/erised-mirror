@@ -35,7 +35,6 @@ class App extends Component {
   componentDidMount() {
     socket
       .on('init', ({ id: clientId }) => {
-        document.title = `${clientId} - VideoCall`;
         const inviteLink = `${window.location.origin}?id=${clientId}&video=1`;
         this.setState({ clientId });
         this.setState({ inviteLink });

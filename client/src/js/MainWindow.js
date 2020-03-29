@@ -25,7 +25,7 @@ function MainWindow({ startCall, clientId, inviteLink, shouldAutoAcceptCall, set
 
   return (
     <div className="container main-window">
-      <h3>
+      <p>
         Hi, your ID is
         <input
           type="text"
@@ -33,10 +33,10 @@ function MainWindow({ startCall, clientId, inviteLink, shouldAutoAcceptCall, set
           defaultValue={clientId}
           readOnly
         />
-      </h3>
-      <h4>Following invite link has been copied to clipboard:</h4>
-      <em><u>{inviteLink}</u></em>
-      <h4>Send it to a friend or enter his id below to call him:</h4>
+      </p>
+      <p>Following invite link has been copied to clipboard:</p>
+      <p><em><u>{inviteLink}</u></em></p>
+      <p>Send it to a friend or enter his ID below to call him:</p>
       <div>
         <input
           type="text"
@@ -58,7 +58,7 @@ function MainWindow({ startCall, clientId, inviteLink, shouldAutoAcceptCall, set
           />
         </div>
       </div>
-      <h4>
+      <p>
         <label id="auto-accept-label" htmlFor="auto-accept">
           <input
             id="auto-accept"
@@ -68,7 +68,7 @@ function MainWindow({ startCall, clientId, inviteLink, shouldAutoAcceptCall, set
           />
           Automatically accept call
         </label>
-      </h4>
+      </p>
     </div>
   );
 }

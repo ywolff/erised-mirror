@@ -7,7 +7,8 @@ cd "$(dirname "$0")/$(dirname "$(readlink "$0")")"
 yarn start > /dev/null &
 ngrok http -log=stdout 5000 > /dev/null &
 
-sleep 1
+echo "Building Mirror of Erised..."
+sleep 2
 node openNgrokUrl.js
 
 wait

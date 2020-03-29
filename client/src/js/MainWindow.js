@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'proptypes';
+import { useLocation } from 'react-router';
 
 function MainWindow({ startCall, clientId }) {
   const [friendID, setFriendID] = useState(null);
+  const location = useLocation();
 
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const friendIdFromUrl = queryParams.get('id');
+    if (friendIdFromUrl) {
+      startCall(true, friendIdFromUrl, { audio: true, video: queryParams.get('video') });
+    }
+  }, [location]);
   /**
    * Start the call with or without video
    * @param {Boolean} video

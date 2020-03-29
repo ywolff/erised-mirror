@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import _ from 'lodash';
 import socket from './socket';
 import PeerConnection from './PeerConnection';
@@ -18,7 +19,7 @@ class App extends Component {
       localSrc: null,
       peerSrc: null,
       friendID: null,
-      nudging: false,
+      nudging: false
     };
     this.pc = {};
     this.config = null;
@@ -83,42 +84,46 @@ class App extends Component {
   sendNudge() {
     const { friendID } = this.state;
     socket.emit('nudge', { to: friendID });
-    this.receiveNudge()
+    this.receiveNudge();
   }
 
   receiveNudge() {
     this.setState({ nudging: true });
     new Audio(require('../assets/nudge.mp3')).play();
-    setTimeout(() => this.setState({ nudging: false }), 1000)
+    setTimeout(() => this.setState({ nudging: false }), 1000);
   }
 
   render() {
     const { clientId, callFrom, callModal, callWindow, localSrc, peerSrc, nudging } = this.state;
     return (
-      <div>
-        <MainWindow
-          clientId={clientId}
-          startCall={this.startCallHandler}
-        />
-        {!_.isEmpty(this.config) && (
-          <CallWindow
-            status={callWindow}
-            localSrc={localSrc}
-            peerSrc={peerSrc}
-            config={this.config}
-            mediaDevice={this.pc.mediaDevice}
-            endCall={this.endCallHandler}
-            sendNudge={this.sendNudgeHandler}
-            nudging={nudging}
-          />
-        ) }
-        <CallModal
-          status={callModal}
-          startCall={this.startCallHandler}
-          rejectCall={this.rejectCallHandler}
-          callFrom={callFrom}
-        />
-      </div>
+      <BrowserRouter>
+        <Route path="/">
+          <div>
+            <MainWindow
+              clientId={clientId}
+              startCall={this.startCallHandler}
+            />
+            {!_.isEmpty(this.config) && (
+              <CallWindow
+                status={callWindow}
+                localSrc={localSrc}
+                peerSrc={peerSrc}
+                config={this.config}
+                mediaDevice={this.pc.mediaDevice}
+                endCall={this.endCallHandler}
+                sendNudge={this.sendNudgeHandler}
+                nudging={nudging}
+              />
+            ) }
+            <CallModal
+              status={callModal}
+              startCall={this.startCallHandler}
+              rejectCall={this.rejectCallHandler}
+              callFrom={callFrom}
+            />
+          </div>
+        </Route>
+      </BrowserRouter>
     );
   }
 }

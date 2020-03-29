@@ -34,9 +34,10 @@ const configs = addBaseConfig({
     }),
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: 'React VideoCall - Minh Son Nguyen',
+      title: 'Esired',
       filename: 'index.html',
-      template: 'src/html/index.html'
+      template: 'src/html/index.html',
+      favicon: 'src/assets/favicon.ico',
     })
   ],
   devServer: {

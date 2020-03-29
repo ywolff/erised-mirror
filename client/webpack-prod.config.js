@@ -49,9 +49,10 @@ const configs = addBaseConfig({
     new MiniCssExtractPlugin({ filename: 'css/[name].min.css' }),
     new DefinePlugin({ SOCKET_HOST: '' }),
     new HtmlWebpackPlugin({
-      title: 'React VideoCall - Minh Son Nguyen',
+      title: 'Esired',
       filename: path.join(__dirname, 'index.html'),
-      template: 'src/html/index.html'
+      template: 'src/html/index.html',
+      favicon: 'src/assets/favicon.ico',
     })
   ],
   optimization: {

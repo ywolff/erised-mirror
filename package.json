@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "React VideoCall App",
   "bin": {
-    "erised-mirror": "./start-with-ngrok.sh"
+    "erised": "./start-with-ngrok.sh"
   },
   "scripts": {
     "start": "cd server && node main.js",

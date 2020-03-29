@@ -44,5 +44,12 @@
 		@include input-placeholder(rgba($main-color, 0.8));
 	}
 
+  #auto-accept-label {
+    margin: 30px 0;
+
+    #auto-accept {
+      margin: 0 10px;
+    }
+  }
 }
 

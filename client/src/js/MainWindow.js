@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'proptypes';
 import { useLocation } from 'react-router';
 
-function MainWindow({ startCall, clientId, inviteLink }) {
+function MainWindow({ startCall, clientId, inviteLink, shouldAutoAcceptCall, setShouldAutoAcceptCall }) {
   const [friendID, setFriendID] = useState(null);
   const location = useLocation();
 
@@ -58,6 +58,17 @@ function MainWindow({ startCall, clientId, inviteLink }) {
           />
         </div>
       </div>
+      <h4>
+        <label id="auto-accept-label" htmlFor="auto-accept">
+          <input
+            id="auto-accept"
+            type="checkbox"
+            checked={shouldAutoAcceptCall}
+            onChange={() => setShouldAutoAcceptCall(!shouldAutoAcceptCall)}
+          />
+          Automatically accept call
+        </label>
+      </h4>
     </div>
   );
 }
@@ -65,7 +76,9 @@ function MainWindow({ startCall, clientId, inviteLink }) {
 MainWindow.propTypes = {
   clientId: PropTypes.string.isRequired,
   inviteLink: PropTypes.string.isRequired,
-  startCall: PropTypes.func.isRequired
+  startCall: PropTypes.func.isRequired,
+  shouldAutoAcceptCall: PropTypes.bool.isRequired,
+  setShouldAutoAcceptCall: PropTypes.func.isRequired
 };
 
 export default MainWindow;

@@ -13,13 +13,15 @@ class App extends Component {
     super(props);
     this.state = {
       clientId: '',
+      inviteLink: '',
       callWindow: '',
       callModal: '',
       callFrom: '',
       localSrc: null,
       peerSrc: null,
       friendID: null,
-      nudging: false
+      nudging: false,
+      shouldAutoAcceptCall: true
     };
     this.pc = {};
     this.config = null;
@@ -39,7 +41,13 @@ class App extends Component {
         navigator.clipboard.writeText(inviteLink);
       })
       .on('request', ({ from: callFrom }) => {
-        this.setState({ callModal: 'active', callFrom });
+        const { shouldAutoAcceptCall } = this.state;
+        if (shouldAutoAcceptCall) {
+          this.config = { audio: true, video: true };
+          this.startCall(false, callFrom, this.config);
+        } else {
+          this.setState({ callModal: 'active', callFrom });
+        }
       })
       .on('call', (data) => {
         if (data.sdp) {
@@ -97,7 +105,17 @@ class App extends Component {
   }
 
   render() {
-    const { clientId, inviteLink, callFrom, callModal, callWindow, localSrc, peerSrc, nudging } = this.state;
+    const {
+      clientId,
+      inviteLink,
+      callFrom,
+      callModal,
+      callWindow,
+      localSrc,
+      peerSrc,
+      nudging,
+      shouldAutoAcceptCall
+    } = this.state;
     return (
       <BrowserRouter>
         <Route path="/">
@@ -106,6 +124,8 @@ class App extends Component {
               clientId={clientId}
               inviteLink={inviteLink}
               startCall={this.startCallHandler}
+              shouldAutoAcceptCall={shouldAutoAcceptCall}
+              setShouldAutoAcceptCall={value => this.setState({ shouldAutoAcceptCall: value })}
             />
             {!_.isEmpty(this.config) && (
               <CallWindow

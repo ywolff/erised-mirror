@@ -2,7 +2,9 @@
   "name": "erised-mirror",
   "version": "1.0.0",
   "description": "React VideoCall App",
-  "bin": "./start-with-ngrok.sh",
+  "bin": {
+    "erised-mirror": "./start-with-ngrok.sh"
+  },
   "scripts": {
     "start": "cd server && node main.js",
     "watch:server": "nodemon server/main.js",
@@ -62,8 +64,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nguymin4/react-videocall.git"
+    "url": "git+https://github.com/ywolff/erised-mirror.git"
   },
-  "author": "Minh Son Nguyen",
-  "license": "MIT"
+  "author": "Yannick Wolff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ywolff/erised-mirror/issues"
+  },
+  "homepage": "https://github.com/ywolff/erised-mirror#readme"
 }

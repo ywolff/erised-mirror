@@ -1,13 +1,14 @@
 {
-  "name": "react-videocall",
+  "name": "erised-mirror",
   "version": "1.0.0",
   "description": "React VideoCall App",
+  "bin": "./start-with-ngrok.sh",
   "scripts": {
     "start": "cd server && node main.js",
     "watch:server": "nodemon server/main.js",
     "watch:client": "webpack-dev-server --config client/webpack-dev.config.js",
     "build": "cd client && webpack --config webpack-prod.config.js",
-    "ngrok": "./start-ngrok.sh"
+    "ngrok": "./start-with-ngrok.sh"
   },
   "dependencies": {
     "@babel/core": "7.5.5",

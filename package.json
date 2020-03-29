@@ -10,7 +10,8 @@
     "watch:server": "nodemon server/main.js",
     "watch:client": "webpack-dev-server --config client/webpack-dev.config.js",
     "build": "cd client && webpack --config webpack-prod.config.js",
-    "ngrok": "./start-with-ngrok.sh"
+    "ngrok": "./start-with-ngrok.sh",
+    "postinstall": "yarn build"
   },
   "dependencies": {
     "@babel/core": "7.5.5",

@@ -29,6 +29,7 @@ class App extends Component {
     this.endCallHandler = this.endCall.bind(this);
     this.sendNudgeHandler = this.sendNudge.bind(this);
     this.rejectCallHandler = this.rejectCall.bind(this);
+    this.nudgeAudio = new Audio(require('../assets/nudge.mp3'))
   }
 
   componentDidMount() {
@@ -100,7 +101,7 @@ class App extends Component {
 
   receiveNudge() {
     this.setState({ nudging: true });
-    new Audio(require('../assets/nudge.mp3')).play();
+    this.nudgeAudio.play();
     setTimeout(() => this.setState({ nudging: false }), 1000);
   }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'proptypes';
 import { useLocation } from 'react-router';
 
-function MainWindow({ startCall, clientId }) {
+function MainWindow({ startCall, clientId, inviteLink }) {
   const [friendID, setFriendID] = useState(null);
   const location = useLocation();
 
@@ -22,20 +22,21 @@ function MainWindow({ startCall, clientId }) {
     return () => friendID && startCall(true, friendID, config);
   };
 
+
   return (
     <div className="container main-window">
-      <div>
-        <h3>
-          Hi, your ID is
-          <input
-            type="text"
-            className="txt-clientId"
-            defaultValue={clientId}
-            readOnly
-          />
-        </h3>
-        <h4>Get started by calling a friend below</h4>
-      </div>
+      <h3>
+        Hi, your ID is
+        <input
+          type="text"
+          className="txt-clientId"
+          defaultValue={clientId}
+          readOnly
+        />
+      </h3>
+      <h4>Following invite link has been copied to clipboard:</h4>
+      <em><u>{inviteLink}</u></em>
+      <h4>Send it to a friend or enter his id below to call him:</h4>
       <div>
         <input
           type="text"
@@ -63,6 +64,7 @@ function MainWindow({ startCall, clientId }) {
 
 MainWindow.propTypes = {
   clientId: PropTypes.string.isRequired,
+  inviteLink: PropTypes.string.isRequired,
   startCall: PropTypes.func.isRequired
 };
 

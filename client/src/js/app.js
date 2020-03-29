@@ -33,7 +33,10 @@ class App extends Component {
     socket
       .on('init', ({ id: clientId }) => {
         document.title = `${clientId} - VideoCall`;
+        const inviteLink = `${window.location.origin}?id=${clientId}&video=1`;
         this.setState({ clientId });
+        this.setState({ inviteLink });
+        navigator.clipboard.writeText(inviteLink);
       })
       .on('request', ({ from: callFrom }) => {
         this.setState({ callModal: 'active', callFrom });
@@ -94,13 +97,14 @@ class App extends Component {
   }
 
   render() {
-    const { clientId, callFrom, callModal, callWindow, localSrc, peerSrc, nudging } = this.state;
+    const { clientId, inviteLink, callFrom, callModal, callWindow, localSrc, peerSrc, nudging } = this.state;
     return (
       <BrowserRouter>
         <Route path="/">
           <div>
             <MainWindow
               clientId={clientId}
+              inviteLink={inviteLink}
               startCall={this.startCallHandler}
             />
             {!_.isEmpty(this.config) && (

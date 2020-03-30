@@ -3,16 +3,16 @@
 Erised allows to launch a peer-to-peer video call from command-line with:
 
 1. **Quick setup**:
-  - first user launches the app with one command-line (`erised`) and gets a link in his clipboard
-  - second user can automatically join the call through this link without need to install anything or create an account  
+    - first user launches the app with one command-line (`erised`) and gets a link in his clipboard
+    - second user can automatically join the call through this link without need to install anything or create an account
 2. **Quality**:
-  - quality of communication only depends on the internet connection from both users
+    - quality of communication only depends on the internet connection from both users
 3. **Privacy**:
-  - the server runs on the first user computer and is exposed publicly through [Ngrok](https://ngrok.com/)
-  - it is only used for establishing connection, and video communication then transits directly from one peer to the
+    - the server runs on the first user computer and is exposed publicly through [Ngrok](https://ngrok.com/)
+    - it is only used for establishing connection, and video communication then transits directly from one peer to the
   other, with end-to-end encryption (included in WebRTC protocol)
 4. **Nudges**:
-  - last but not least, the app allows to send *nudges* to your recipient, just like we used to do in MSN Messenger
+    - last but not least, the app allows to send *nudges* to your recipient, just like we used to do in MSN Messenger
 
 ## Installation
 

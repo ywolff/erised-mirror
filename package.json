@@ -5,13 +5,22 @@
   "bin": {
     "erised": "./start-with-ngrok.sh"
   },
+  "files": [
+    "start-with-ngrok.sh",
+    "openNgrokUrl.js",
+    "config.json",
+    "server/main.js",
+    "server/lib",
+    "client/index.html",
+    "client/dist"
+  ],
   "scripts": {
     "start": "cd server && node main.js",
     "watch:server": "nodemon server/main.js",
     "watch:client": "webpack-dev-server --config client/webpack-dev.config.js",
     "build": "cd client && webpack --config webpack-prod.config.js",
     "ngrok": "./start-with-ngrok.sh",
-    "postinstall": "yarn build"
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@babel/core": "7.5.5",

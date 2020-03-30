@@ -1,7 +1,7 @@
 {
   "name": "erised-mirror",
   "version": "1.0.2",
-  "description": "React VideoCall App",
+  "description": "Launch peer-to-peer video calls from command-line",
   "bin": {
     "erised": "./start-with-ngrok.sh"
   },

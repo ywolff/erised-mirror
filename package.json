@@ -1,6 +1,6 @@
 {
   "name": "erised-mirror",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Launch peer-to-peer video calls from command-line",
   "bin": {
     "erised": "./start-with-ngrok.sh"
